@@ -1,0 +1,160 @@
+﻿<div class="panel panel-default">
+    <!-- Default panel contents -->
+    <div class="panel-heading" style="background-color:#00a671; color: white">
+        <div class="row">
+            <span class="col-xs-3" ng-click="$state.go('index.profile')">返回</span><span
+                class="col-xs-6 text-center">我的资料</span><span
+                class="col-xs-3 text-right" ng-click="$state.go('index.home')">首页</span>
+        </div>
+    </div>
+    <div class="panel-body">
+        <ng-form class="row form-horizontal" novalidate role="form"
+                 name="userForm">
+            <div class="form-group">
+                <!-- Text input-->
+                <label class="control-label col-sm-2">姓名</label>
+
+                <div class="col-sm-10">
+                    <input type="text" name="realname" placeholder="请输入姓名"
+                           ng-model="userinfo.REALNAME" class="form-control" required>
+
+                    <p class="help-block">与身份证上姓名一致</p>
+                </div>
+            </div>
+            <div class="form-group"
+                 ng-show="userForm.realname.$dirty&&userForm.realname.$invalid">
+                <div class="col-md-offset-2 col-md-10">
+                    <label class="text-danger control-label"
+                           ng-show="userForm.realname.$error.required"> 姓名不能为空</label>
+                </div>
+            </div>
+            <div class="form-group">
+                <!-- Text input-->
+                <label class="control-label  col-sm-2">手机号码</label>
+
+                <div class="col-sm-10">
+                    <input type="tel" name="tel" ng-model="userinfo.TEL" maxlength="11"
+                           minlength="11" placeholder="请输入手机号码" class="form-control" required>
+
+                    <p class="help-block">请输入11位的手机号码</p>
+                </div>
+            </div>
+            <div class="form-group"
+                 ng-show="userForm.tel.$dirty&&userForm.tel.$invalid">
+                <div class="col-md-offset-2 col-md-10">
+                    <label class="text-danger control-label"
+                           ng-show="userForm.tel.$invalid||userForm.tel.$error.minlength||userForm.tel.$error.maxlength">
+                        请输入11位手机号</label>
+                </div>
+            </div>
+            <div class="form-group">
+                <!-- Text input-->
+                <label class="control-label col-sm-2">昵称</label>
+
+                <div class="col-sm-10">
+                    <input type="text" name="nickname" placeholder="请输入昵称"
+                           ng-model="userinfo.NICKNAME" class="form-control">
+
+                    <p class="help-block">昵称,中英文都可以</p>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <!-- Text input-->
+                <label class="control-label col-sm-2">性别</label>
+
+                <div class="checkbox col-sm-10" style="padding-bottom: 7px;">
+                    <label ng-repeat="item in sexList"
+                           style="padding-left: 0px; padding-right: 20px"><input
+                            type="radio" name="sex" ng-model="userinfo.SEX"
+                            ng-model="$parent.pageNumber" ng-value="item.values.DICVALUE"/>
+                        {{item.values.DICDESC}} </label>
+                </div>
+            </div>
+            <div class="form-group">
+                <!-- Select Basic -->
+                <label class="control-label col-sm-2">省份</label>
+
+                <div class="col-sm-10">
+                    <select class="form-control"
+                            ng-options="p.RGCODE as p.RGNAME for p in provinces"
+                            ng-model="userinfo.PROVINCE">
+                        <option value="">请选择</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group"
+                 ng-show="userForm.province.$dirty&&userForm.province.$invalid">
+                <div class="col-md-offset-2 col-md-10">
+                    <label class="text-danger control-label"
+                           ng-show="userForm.province.$error.required"> 省不能为空</label>
+                </div>
+            </div>
+            <div class="form-group">
+                <!-- Select Basic -->
+                <label class="control-label col-sm-2">城市</label>
+
+                <div class="col-sm-10">
+                    <select class="form-control"
+                            ng-options="p.RGCODE as p.RGNAME for p in citys"
+                            ng-model="userinfo.CITY">
+                        <option value="">请选择</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group"
+                 ng-show="userForm.city.$dirty&&userForm.city.$invalid">
+                <div class="col-md-offset-2 col-md-10">
+                    <label class="text-danger control-label"
+                           ng-show="userForm.city.$error.required"> 市不能为空</label>
+                </div>
+            </div>
+            <div class="form-group">
+                <!-- Select Basic -->
+                <label class="control-label col-sm-2">县城</label>
+
+                <div class="col-sm-10">
+                    <select class="form-control" ng-options="p.RGCODE as p.RGNAME for p in countys"
+                            ng-model="userinfo.COUNTY">
+                        <option value="">请选择</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group"
+                 ng-show="userForm.county.$dirty&&userForm.county.$invalid">
+                <div class="col-md-offset-2 col-md-10">
+                    <label class="text-danger control-label"
+                           ng-show="userForm.county.$error.required"> 县不能为空</label>
+                </div>
+            </div>
+            <div class="form-group">
+                <!-- Text input-->
+                <label class="control-label col-sm-2">详细地址</label>
+
+                <div class="col-sm-10">
+                    <input type="text" placeholder="请输入你的详细地址" class="form-control"
+                           name="address" ng-model="userinfo.ADDRESS" required>
+
+                    <p class="help-block">具体到门牌号(不包含省市县)</p>
+                </div>
+            </div>
+            <div class="form-group"
+                 ng-show="userForm.address.$dirty&&userForm.address.$invalid">
+                <div class="col-md-offset-2 col-md-10">
+                    <label class="text-danger control-label"
+                           ng-show="userForm.address.$error.required"> 详细地址不能为空</label>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-sm-2"></label>
+                <!-- Button -->
+                <div class="col-sm-10">
+                    <button class="btn btn-success btn-block" ng-disabled="userForm.$invalid"
+                            ng-click="update()">
+                        <span class="glyphicon glyphicon-ok"></span> 保存
+                    </button>
+                </div>
+            </div>
+        </ng-form>
+    </div>
+</div>

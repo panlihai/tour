@@ -1,0 +1,77 @@
+﻿<div class="container-fluid">
+    <!--  #172a34 -->
+    <div class="row" style="background-color:#00a671; color: white">
+        <div class="col-sm-4"></div>
+        <div class="col-sm-8 media" style="margin-top: 10px">
+            <a class="pull-left" ui-sref="index.userinfo">
+                <img ng-src="./img/logo.png" ng-if="USERINFO.HEADIMGURL==''" class="img-circle media-object" alt='点击换头像'
+                     style="border-radius: 50%"/></a>
+            <img ng-src="{{USERINFO.HEADIMGURL}}" ng-if="USERINFO.HEADIMGURL!=''" class="img-circle media-object"
+                 alt='点击换头像'
+                    /></a>
+            <div class="media-body">
+                <h4 class="media-heading">
+                    <label ng-bind="USERINFO.NICKNAME"/></h4>
+                {{USERINFO.VCACCOUNT.DATA[0].ACCOUNTNAME}}
+                <dl>
+                    <dt>积分:{{USERINFO.VCACCOUNT.DATA[0].SCORE}}</dt>
+                </dl>
+            </div>
+        </div>
+    </div>
+    <div class="linespecheight"></div>
+    <form class="form-horizontal form-horizontal-style">
+        <div class="form-group" style="margin-bottom: 0px;cursor:pointer" ng-click="$state.go('index.account')">
+            <span class="glyphicon glyphicon-user col-xs-1"></span><span
+                class="col-xs-9">农场基本资料 </span><span
+                class="col-xs-1 text-right glyphicon glyphicon-chevron-right"></span>
+        </div>
+        <div class="form-group" style="margin-bottom: 0px;cursor:pointer" ng-click="$state.go('index.listloc')">
+            <span class="glyphicon glyphicon-th col-xs-1"></span><span
+                class="col-xs-9">农场地块</span><span
+                class="col-xs-1 text-right glyphicon glyphicon-chevron-right"></span>
+        </div>
+        <div class="form-group" style="margin-bottom: 0px;cursor:pointer" ng-click="$state.go('index.listassets')">
+            <span class="glyphicon glyphicon-education col-xs-1"></span><span
+                class="col-xs-9">农场设备</span><span
+                class="col-xs-1 text-right glyphicon glyphicon-chevron-right"></span>
+        </div>
+        <div class="linespecheight"></div>
+        <div ng-show="false" class="form-group" style="margin-bottom: 0px;;cursor:pointer"
+             ng-click="$state.go('index.order')">
+            <span class="glyphicon glyphicon-shopping-cart col-xs-1"></span><span
+                class="col-xs-9">我的订单</span><span
+                class="col-xs-1 text-right glyphicon glyphicon-chevron-right"></span>
+        </div>
+        <div ng-show="false" class="linespec"></div>
+        <div ng-show="false" class="form-group" style="margin-bottom: 0px;cursor:pointer;"
+             ng-click="$state.go('index.customer')">
+            <span class="glyphicon glyphicon-heart col-xs-1"></span><span
+                class="col-xs-9">我的客户</span><span
+                class="col-xs-1 text-right glyphicon glyphicon-chevron-right"></span>
+        </div>
+        <div ng-show="false" class="linespec"></div>
+        <div class="form-group" style="margin-bottom: 0px;cursor:pointer;" ng-click="$state.go('index.attention')">
+            <span class="glyphicon glyphicon-star-empty col-xs-1"></span><span
+                class="col-xs-9">关注粉丝</span><span
+                class="col-xs-1 text-right glyphicon glyphicon-chevron-right"></span>
+        </div>
+        <div class="linespecheight"></div>
+        <div class="form-group" style="margin-bottom: 0px;cursor:pointer;" ng-click="$state.go('index.listmessage')">
+            <span class="glyphicon glyphicon-envelope col-xs-1"></span><span
+                class="col-xs-9">我的消息</span>
+			<span class="col-xs-1 text-right glyphicon glyphicon-chevron-right"></span>
+        </div>
+        <div class="linespec"></div>
+        <div class="form-group" style="margin-bottom: 0px;cursor:pointer;" ng-click="$state.go('index.say')">
+            <span class="glyphicon glyphicon-pushpin col-xs-1"></span><span
+                class="col-xs-9">我要吐槽</span><span
+                class="col-xs-1 text-right glyphicon glyphicon-chevron-right"></span>
+        </div>
+        <div class="linespecheight" style="margin-bottom:0px;cursor:pointer;"></div>
+        <!-- <div class="form-group text-center" style="margin-bottom: 0px;" ng-click="$state.go('user.home')">
+            <span class="glyphicon glyphicon-off"> </span><label class="label-control"
+                >&nbsp;&nbsp;退出登录</label>
+        </div> -->
+    </form>
+</div>

@@ -1,0 +1,319 @@
+<div class="panel panel-default">
+    <div class="panel-heading" style="background-color:#00a671; color: white;">
+        <div class="row">
+            <span class="col-xs-3"  ui-sref="index.listsowing">返回列表</span>
+            <span class="col-xs-6 text-center">发布农事</span>
+            <span class="col-xs-3 text-right" ui-sref="index.home">首页</span>
+        </div>
+    </div>
+</div>
+<div class="container-fluid" style="margin-bottom: 50px">
+    <div class="thumbnail" style="background-color:#ffffff">
+        <div class="caption">
+            <h3 class="clearfix" style="margin-top: 0px;"><span>{{sowing.ITEMDESC}}</span>
+                <span class="pull-right" style="font-size: small">
+                    <span style="color:#999999">{{sowing.BUILDTIME|timeSec2Mis|date:"yyyy-MM-dd"}}</span>
+                </span>
+            </h3>
+
+            <div class="clearfix">
+                    <span class="pull-left">
+                        <span style="color:#999999">批次号:</span>
+                        <span style="color:#666666">{{sowing.PRODUCTID}}</span>
+                    </span>
+            </div>
+            <div class="clearfix">
+                    <span class="pull-left">
+                        <span style="color:#999999">地块:</span>
+                        <span style="color:#666666">{{sowing.LOCNAME}}</span>
+                    </span>
+            </div>
+        </div>
+    </div>
+
+    <div class="row" style="margin-top: 10px">
+        <div class="col-md-12">
+            <form class="form-horizontal" role="form" name="form">
+
+                <form class="form-horizontal">
+                    <div class="form-group">
+                        <legend class="text-center text-info">产品农事活动</legend>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-2  control-label">图片:</label>
+
+                          <div class="col-sm-10"
+                             ngf-select="uploadFile($files)"
+                             name="headPic" ngf-pattern="'image/*'"
+                             ngf-accept="'image/*'" ngf-max-size="10MB" ngf-min-height="100"
+                                >
+                            <div class="farm_picture" style="opacity: 0.8;background-color: #333">
+                                <img ng-src="{{produce.PICPATH}}" width="100" height="100"/>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+
+                        <!-- Select Basic -->
+                        <label class="col-md-2  control-label">农事内容:</label>
+
+                        <div class="col-md-10">
+                            <select name="content" class="form-control"
+                                    ng-options="p.values.DICVALUE as p.values.DICVALUE for p in contentList"
+                                    ng-model="produce.CONTENT" required>
+                                <option value="">请选择农事内容</option>
+                            </select>
+                        </div>
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <!-- Select Basic -->
+                        <label class="col-md-2  control-label">投入品分类:</label>
+
+                        <div class="col-md-10">
+                            <select name="inpType" class="form-control"
+                                    ng-options="p.CATALOGID as p.CATALOGNAME for p in inpTypeList"
+                                    ng-model="produce.INPTYPE" required>
+                                <option value="">请选择投入品分类</option>
+                            </select>
+                        </div>
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <!-- Select Basic -->
+                        <label class="col-md-2  control-label">分类:</label>
+
+                        <div class="col-md-10">
+                            <select name="incType" class="form-control"
+                                    ng-options="p.CATALOGID as p.CATALOGNAME for p in incTypeList"
+                                    ng-model="produce.INCTYPE" required>
+                                <option value="">请选择投入品分类</option>
+                            </select>
+                        </div>
+
+                    </div>
+
+                    <div class="form-group">
+
+                        <!-- Select Basic -->
+                        <label class="col-md-2  control-label">分类名称:</label>
+
+                        <div class="col-md-10">
+                            <select name="inType" class="form-control"
+                                    ng-options="p.CATALOGID as p.CATALOGNAME for p in inTypeList"
+                                    ng-model="produce.INTYPE" required>
+                                <option value="">请选择投入品名称</option>
+                            </select>
+                        </div>
+
+                    </div>
+                    <div class="form-group">
+
+                        <!-- Text input-->
+                        <label class="col-md-2  control-label">投入品名称:</label>
+
+                        <div class="col-md-10">
+                            <input type="text" placeholder="请填写投入品名称" ng-model="produce.INNAME" class="form-control">
+
+                            <p class="help-block"></p>
+                        </div>
+                    </div>
+
+                    <div class="form-group" ng-show="!isOther">
+
+                        <!-- Text input-->
+                        <label class="col-md-2  control-label">品牌:</label>
+
+                        <div class="col-md-10">
+                            <input type="text" placeholder="请填写品牌" ng-model="produce.INBRAND" class="form-control">
+
+                            <p class="help-block"></p>
+                        </div>
+                    </div>
+
+
+                    <div class="form-group" ng-show="!isOther">
+
+                        <!-- Text input-->
+                        <label class="col-md-2  control-label">使用量:</label>
+
+                        <div class="col-md-10">
+                            <div class="input-group">
+                                <input type="number" placeholder="使用剂量" class="form-control" ng-model="produce.INCOUNT">
+                               <span class="input-group-addon">
+                                   <select class="searchList"
+                                           ng-options="p.values.DICVALUE as p.values.DICVALUE for p in inUnitList"
+                                           ng-model="produce.INUNIT" required>
+                                       <option value="">请选择单位</option>
+                                   </select></span>
+                            </div>
+                            <p class="help-block"></p>
+                        </div>
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <!-- Text input-->
+                        <label class="col-md-2  control-label">防止对象:</label>
+
+                        <div class="col-md-10">
+                            <input type="text" placeholder="填写防止病害" class="form-control" name="inPrevent"
+                                   ng-model="produce.INPREVENT">
+
+                            <p class="help-block"></p>
+                        </div>
+                    </div>
+                    <div class="form-group" ng-show="!isOther">
+
+                        <!-- Text input-->
+
+                        <label class="col-md-2 control-label">出厂日期:</label>
+
+                        <div class="col-md-10">
+                            <input type="date" class="form-control" ng-model="INTRANSLATEDATE"/>
+                        </div>
+                    </div>
+                    <div class="form-group" ng-show="!isOther">
+
+                        <!-- Appended input-->
+                        <label class="col-md-2  control-label">保质期:</label>
+
+                        <div class="col-md-10">
+                            <div class="input-group">
+                                <input class="form-control" placeholder="保质期" type="number" name="inReleaseDate"
+                                       ng-model="produce.INRELEASEDATE">
+                                <span class="input-group-addon">月</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group" ng-show="!isOther">
+
+                        <!-- Select Basic -->
+                        <label class="col-md-2  control-label">储存类型:</label>
+
+                        <div class="col-md-10">
+                            <select class="form-control"
+                                    ng-options="p.values.DICVALUE as p.values.DICVALUE for p in instoreTypeList"
+                                    ng-model="produce.INSTORETYPE" required>
+                                <option value="">请选择存储类型</option>
+                            </select>
+                        </div>
+
+                    </div>
+
+                    <div class="form-group" ng-show="!isOther">
+
+                        <!-- Text input-->
+                        <label class="col-md-2  control-label">供应商:</label>
+
+                        <div class="col-md-10">
+                            <input type="text" placeholder="请输入供应商名称" class="form-control" ng-model="produce.INSUPPLIER"
+                                   name="insupplier">
+
+                            <p class="help-block"></p>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+
+                        <!-- Select Basic -->
+                        <label class="col-md-2  control-label">生长周期:</label>
+
+                        <div class="col-md-10">
+                            <select class="form-control"
+                                    ng-options="p.values.DICVALUE as p.values.DICVALUE for p in growthCycleList"
+                                    ng-model="produce.GROWTHCYCLE" required>
+                                <option value="">请选择生长周期</option>
+                            </select>
+                        </div>
+
+                    </div>
+
+                    <div class="form-group" ng-show="isProduct">
+
+                        <!-- Select Basic -->
+                        <label class="col-md-2  control-label">产品等级:</label>
+
+                        <div class="col-md-10">
+                            <select class="form-control"
+                                    ng-options="p.values.DICVALUE as p.values.DICVALUE for p in productLevelList"
+                                    ng-model="sowing.PRODUCTLEVEL" required>
+                                <option value="">请选择产品等级</option>
+                            </select>
+                        </div>
+
+                    </div>
+
+                    <div class="form-group" ng-show="isProduct">
+
+                        <!-- Text input-->
+                        <label class="col-md-2  control-label">采收量:</label>
+
+                        <div class="col-md-10">
+                            <div class="input-group">
+                                <input type="text" placeholder="实际的采收产量 吨" class="form-control"
+                                       ng-model="sowing.REALWEIGHT" name="realWeight">
+                                <span class="input-group-addon">吨</span>
+                            </div>
+                            <p class="help-block"></p>
+                        </div>
+                    </div>
+                    <div class="form-group" ng-show="isProduct">
+
+                        <!-- Text input-->
+                        <label class="col-md-2  control-label">预计销量:</label>
+
+                        <div class="col-md-10">
+                            <div class="input-group">
+                                <input type="text" placeholder="请输入预计的销量 吨" class="form-control"
+                                       ng-model="sowing.FORECASESALIWEIGHT" name="forecaseSailWeight">
+                                <span class="input-group-addon">吨</span>
+                            </div>
+                            <p class="help-block"></p>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+
+                        <!-- Select Basic -->
+                        <label class="col-md-2  control-label">工时:</label>
+
+                        <div class="col-md-10">
+                            <select class="form-control"
+                                    ng-options="p.values.DICVALUE as p.values.DICVALUE for p in productWorkTimeList"
+                                    ng-model="produce.PRODUCEWORKTIME" required>
+                                <option value="">请选择工时</option>
+                            </select>
+                        </div>
+
+                    </div>
+
+                    <div class="form-group">
+
+                        <!-- Textarea -->
+                        <label class="col-md-2  control-label">备注:</label>
+
+                        <div class="col-md-10">
+                            <textarea class="form-control" ng-model="produce.MEMO"> </textarea>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-md-12">
+                            <button ng-click="publishproduce()" class="btn btn-warning btn-block">立即发布</button>
+                        </div>
+                    </div>
+                </form>
+            </form>
+        </div>
+    </div>
+</div>

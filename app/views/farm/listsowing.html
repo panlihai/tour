@@ -1,0 +1,70 @@
+<div class="panel panel-default">
+    <div class="panel-heading" style="background-color:#00a671; color: white;">
+        <div class="row">
+            <span class="col-xs-3" ui-sref="index.home" style="width: 17.666667%;">首页</span>
+            <span class="col-xs-6 text-center" style="width: 40.666667%;">我的播种</span>
+            <span class="col-xs-3 text-right" ui-sref="index.publishsowing" style="width: 40.666667%;"> 发布播种</span>
+        </div>
+    </div>
+</div>
+<div class="container-fluid" style="margin-bottom: 50px;background-color:#f7f7f7">
+    <div class="row" ng-repeat="sowing in sowingList">
+        <div class="thumbnail" style="background-color:#ffffff">
+            <div class="caption">
+                <h3 class="clearfix" style="margin-top: 0px;"><span>{{sowing.ITEMSPEC}}</span>
+                <span class="pull-right" style="font-size: small">
+                    <span style="color:#999999">{{sowing.BUILDTIME|timeSec2Mis|date:"yyyy-MM-dd"}}</span>
+                </span>
+                </h3>
+
+                <div class="clearfix">
+                    <span class="pull-left">
+                        <span style="color:#999999">批次号:</span>
+                        <span style="color:#666666">{{sowing.PRODUCTID}}</span>
+                    </span>
+                </div>
+                <div class="clearfix">
+                    <span class="pull-left">
+                        <span style="color:#999999">预计产量:</span>
+                         <span style="color:#666666">{{sowing.FORECASEWEIGHT}}吨</span>
+                    </span>
+                    <span class="pull-right">
+                        <span style="color:#999999">面积:</span>
+                         <span style="color:#666666">{{sowing.QUANTITY}}亩</span>
+                    </span>
+                </div>
+                <div class="clearfix">
+                    <span class="pull-left">
+                        <span style="color:#999999">地块:</span>
+                        <span style="color:#666666">{{sowing.LOCNAME}}</span>
+                    </span>
+                </div>
+                <div class="clearfix">
+                    <span class="pull-left">
+                        <span style="color:#999999">备注:</span>
+                        <span style="color:#666666">{{sowing.MEMO}}</span>
+                    </span>
+                </div>
+                <div style="margin: 5px;" class="clearfix">
+                    <div style="width: 33.3%;" class="pull-left">
+                        <button class="btn btn-default btn-sm"
+                                ui-sref="index.sowingdetail({productid:sowing.PRODUCTID})">查看详情
+                        </button>
+                    </div>
+                    <div style="width: 33.3%;" class="text-center pull-left">
+                        <button class="btn btn-default btn-sm" ng-show="sowing.STATUS=='N'"
+                                ui-sref="index.publishproduct({productid:sowing.PRODUCTID})">发布产品
+                        </button>
+                        <span ng-show="sowing.STATUS=='Y'"><span
+                                style="color:#a9302a;font-size: 14px">已发布</span></span>
+                    </div>
+                    <div style="width: 33.3%;" class="clearfix pull-right">
+                        <button class="btn btn-warning btn-sm pull-right"
+                                ui-sref="index.publishproduce({productid:sowing.PRODUCTID})">发布农事
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,195 @@
+<div class="panel panel-default">
+    <div class="panel-heading" style="background-color:#00a671; color: white;">
+        <div class="row">
+            <span class="col-xs-3" ui-sref="index.listactivity">返回列表</span>
+            <span class="col-xs-6 text-center">发布活动</span>
+            <span class="col-xs-3 text-right" ui-sref="index.home">首页</span>
+        </div>
+    </div>
+</div>
+<div class="container-fluid" style="margin-bottom: 50px">
+
+    <div class="clearfix"><button type="button" class="btn btn-success pull-right" ng-click="publishEdit=true" style="margin-top: 10px; margin-bottom: 10px;">修改</button></div>
+    <div class="row" style="margin-top: 10px">
+        <div class="col-md-12">
+            <form class="form-horizontal">
+                <div class="form-group">
+                    <!-- Select Basic -->
+                    <label class="col-md-2 control-label">活动分类:</label>
+
+                    <div class="col-md-10">
+                        <label class="control-label" style="font-weight: normal;text-align: left;"  ng-hide="publishEdit" >
+                            {{sowing.PARENTTYPE}}
+                        </label>
+                        <select name="parentType" class="form-control" ng-show="publishEdit"
+                                ng-options="p.CATALOGID as p.CATALOGNAME for p in bussTypeList"
+                                ng-model="sowing.PARENTTYPE" required>
+                            <option value="">请选择品类</option>
+                        </select>
+                    </div>
+
+                </div>
+                <div class="form-group">
+                    <!-- Text input-->
+                    <label class="col-md-2 control-label">活动标题:</label>
+
+                    <div class="col-md-10">
+                        <label class="control-label" style="font-weight: normal;text-align: left;"  ng-hide="publishEdit" >
+                            请输入标题
+                        </label>
+                        <input type="text" placeholder="请输入标题" class="form-control" ng-show="publishEdit" >
+                        <p class="help-block"></p>
+                    </div>
+                </div>
+                <div class="form-group">
+
+                    <!-- Textarea -->
+                    <label class="col-md-2 control-label">活动正文:</label>
+
+                    <div class="col-md-10">
+                        <label class="control-label" style="font-weight: normal;text-align: left;" ng-hide="publishEdit" >
+
+                        </label>
+                        <textarea type="" class="form-control" ng-show="publishEdit" > </textarea>
+                    </div>
+                </div>
+
+
+                <div class="form-group">
+
+                    <!-- Appended input-->
+                    <label class="col-md-2 control-label">活动日期:</label>
+
+                    <div class="col-md-10">
+                        <label class="control-label" style="font-weight: normal;text-align: left;" ng-hide="publishEdit" >
+                            请输入开始日期
+                        </label>
+                        <input placeholder="请输入开始日期" type="text" class="form-control" ng-show="publishEdit" >
+
+                        <p class="help-block">活动开始日期</p>
+                    </div>
+
+                </div>
+                <div class="form-group">
+
+                    <!-- Text input-->
+                    <label class="col-md-2 control-label">截止日期:</label>
+
+                    <div class="col-md-10">
+                        <label class="control-label" style="font-weight: normal;text-align: left;" ng-hide="publishEdit" >
+                            请输入截止日期
+                        </label>
+                        <input type="text" placeholder="请输入截止日期" class="form-control" ng-show="publishEdit" >
+                        <p class="help-block">活动截止日期</p>
+                    </div>
+                </div>
+                <div class="form-group">
+
+                    <!-- Select Basic -->
+                    <label class="col-md-2 control-label">品种:</label>
+
+                    <div class="col-md-10">
+                        <label class="control-label" style="font-weight: normal;text-align: left;" ng-hide="publishEdit" >
+                            Enter
+                        </label>
+                        <select class="form-control" ng-show="publishEdit" >
+                            <option>Enter</option>
+                            <option>Your</option>
+                            <option>Options</option>
+                            <option>Here!</option>
+                        </select>
+                    </div>
+
+                </div>
+
+                <div class="form-group">
+                    <label class="col-md-2 control-label">活动图片:</label>
+
+                    <!-- File Upload -->
+                    <div class="col-md-10">
+                        <label class="control-label" style="font-weight: normal;text-align: left;" ng-hide="publishEdit" >
+
+                        </label>
+                        <input class="form-control" type="file" ng-show="publishEdit" >
+                    </div>
+                </div>
+
+                <div class="form-group">
+
+                    <!-- Text input-->
+                    <label class="col-md-2 control-label">活动价格:</label>
+
+                    <div class="col-md-10">
+                        <label class="control-label" style="font-weight: normal;text-align: left;" ng-hide="publishEdit" >
+                            请输入价格
+                        </label>
+                        <input type="text" placeholder="请输入价格" class="form-control" ng-show="publishEdit" >
+
+                        <p class="help-block">输入价格 单位元</p>
+                    </div>
+                </div>
+
+                <div class="form-group">
+
+                    <!-- Text input-->
+                    <label class="col-md-2 control-label">原价:</label>
+
+                    <div class="col-md-10">
+                        <label class="control-label" style="font-weight: normal;text-align: left;" ng-hide="publishEdit" >
+                            请输入原价
+                        </label>
+                        <input type="text" placeholder="请输入原价" class="form-control" ng-show="publishEdit" >
+                        <p class="help-block">原价不能比活动价格低</p>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <!-- Text input-->
+                    <label class="col-md-2 control-label">可带走数量:</label>
+                    <div class="col-md-10">
+                        <label class="control-label" style="font-weight: normal;text-align: left;" ng-hide="publishEdit" >
+                            请输入可以带走的数量
+                        </label>
+                        <input type="text" placeholder="请输入可以带走的数量" class="form-control" ng-show="publishEdit" >
+                        <p class="help-block">免费带走的数量</p>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-2 control-label">购买包含:</label>
+                    <div class="col-md-10">
+                        <label class="control-label" style="font-weight: normal;text-align: left;" ng-hide="publishEdit" >
+
+                        </label>
+                        <textarea type="" class="form-control" ng-show="publishEdit" > </textarea>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <!-- Textarea -->
+                    <label class="col-md-2 control-label">使用规则:</label>
+                    <div class="col-md-10">
+                        <label class="control-label" style="font-weight: normal;text-align: left;" ng-hide="publishEdit" >
+
+                        </label>
+                        <textarea type="" class="form-control" ng-show="publishEdit" > </textarea>
+                    </div>
+                </div>
+                <div class="form-group">
+
+                    <!-- Textarea -->
+                    <label class="col-md-2 control-label">活动摘要:</label>
+
+                    <div class="col-md-10">
+                        <label class="control-label" style="font-weight: normal;text-align: left;" ng-hide="publishEdit" >
+
+                        </label>
+                        <textarea type="" class="form-control" ng-show="publishEdit"> </textarea>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-12">
+                        <button ng-click="publishEdit()" class="btn btn-primary btn-block" ng-click="false">立即发布</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

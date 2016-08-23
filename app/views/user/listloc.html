@@ -1,0 +1,52 @@
+<div class="panel panel-default">
+    <div class="panel-heading" style="background-color:#00a671; color: white">
+        <div class="row">
+            <span class="col-xs-2" ng-click="$state.go('index.profile')">返回</span><span
+                class="col-xs-6 text-center">地块列表</span><span
+                class="col-xs-4 text-right" ng-click="$state.go('index.publishloc')">增加地块</span>
+        </div>
+    </div>
+</div>
+<div class="container-fluid" style="margin-bottom: 50px;background-color:#f7f7f7">
+    <div class="row" ng-repeat="loc in locList">
+        <div class="thumbnail" style="background-color:#ffffff">
+            <div class="caption">
+                <h3 class="clearfix" style="margin-top: 0px;">
+                    <span>{{loc.LOCNAME}}</span>
+                    <span class="pull-right" style="font-size: small">
+                        编号:<span style="color:#a9302a">{{loc.LOCID}}</span>
+                    </span>
+                </h3>
+
+                <div class="clearfix">
+                    <span class="pull-left">
+                        <span style="color:#999999">面积：</span>
+                        <span style="color:#666666">{{loc.LOCSPEC}}</span>
+                    </span>
+                    <span class="pull-right">
+                        <span style="color:#999999">位置：</span>
+                        <span style="color:#666666">{{loc.LOCMODEL}}</span>
+                    </span>
+                </div>
+                <div class="clearfix">
+                    <span class="pull-left" style="color:#999999">备注：</span>
+                    <span style="color:#666666"> {{loc.REMARK}}</span>
+                </div>
+                <div class="clearfix" style="padding-bottom: 20px; padding-top: 20px;">
+                    <div class="pull-left">
+                        <button type="button" class="btn btn-default pull-right"
+                                ui-sref="index.locdetail({locid:loc.LOCID})">
+                            查看详情
+                        </button>
+                    </div>
+                    <div class="pull-right">
+                        <button type="button" class="btn btn-warning pull-right"
+                                ui-sref="index.locedit({locid:loc.LOCID})">
+                            修改
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

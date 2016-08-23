@@ -1,0 +1,83 @@
+<div class="panel panel-default">
+    <div class="panel-heading" style="background-color:#00a671; color: white;">
+        <div class="row">
+            <span class="col-xs-3" ui-sref="index.listcquotationbill">返回</span>
+            <span class="col-xs-6 text-center">活动列表</span>
+            <span class="col-xs-3 text-right" ui-sref="index.publishcquotationbill()">发布活动</span>
+        </div>
+    </div>
+</div>
+<div class="container-fluid" style="margin-bottom: 50px;">
+    <div class="row" style="margin-top: 10px;">
+        <div class="thumbnail" style="background-color:#ffffff">
+            <div class="caption">
+                <h3 class="clearfix" style="margin-top: 0px;"><span>{{sowing.ITEMDESC}}</span>
+                <span class="pull-right" style="font-size: small">
+                    <span style="color:#999999">{{sowing.BUILDTIME|timeSec2Mis|date:"yyyy-MM-dd"}}</span>
+                </span>
+                </h3>
+
+                <div class="clearfix">
+                    <span class="pull-left">
+                        <span style="color:#999999">批次号:</span>
+                        <span style="color:#666666">{{sowing.PRODUCTID}}</span>
+                    </span>
+                </div>
+                <div class="clearfix">
+                    <span class="pull-left">
+                        <span style="color:#999999">预计产量:</span>
+                         <span style="color:#666666">{{sowing.FORECASEWEIGHT}}吨</span>
+                    </span>
+                    <span class="pull-right">
+                        <span style="color:#999999">面积:</span>
+                         <span style="color:#666666">{{sowing.QUANTITY}}亩</span>
+                    </span>
+                </div>
+                <div class="clearfix">
+                    <span class="pull-left">
+                        <span style="color:#999999">地块:</span>
+                        <span style="color:#666666">{{sowing.LOCNAME}}</span>
+                    </span>
+                </div>
+                <div class="clearfix">
+                    <span class="pull-left">
+                        <span style="color:#999999">备注:</span>
+                        <span style="color:#666666">{{sowing.MEMO}}</span>
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <span class="text-success">农事活动</span>
+    </div>
+    <div class="row" ng-repeat="produce in produceList">
+        <div class="thumbnail" style="background-color:#ffffff">
+            <div class="caption">
+                <div class="media"
+                     style="margin-bottom: 10px;background-color:#ffffff">
+                    <a class="pull-left" href="#">
+                        <img class="media-object" ng-src="{{produce.PICPATH}}"/>
+                    </a>
+
+                    <div class="media-body">
+                        <h4 class="media-heading clearfix">
+                            <span class="pull-left">{{produce.INPTYPE|produceintype}} ({{produce.INNAME}})</span>
+                            <span class="pull-right">{{produce.GROWTHCYCLE}}</span>
+                        </h4>
+
+                        <p>{{produce.CONTENT}}</p>
+
+                        <div class="clearfix"><span class="pull-left">{{produce.ACTIONUSER}}</span>
+                            <span class="pull-right">{{produce.ACTIONTIME|timeSec2Mis|date:"yyyy-MM-dd"}}</span>
+                        </div>
+                        <div>
+                            <span class="pull-left">备注:{{produce.MEMO}}</span>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

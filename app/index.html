@@ -1,0 +1,68 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN" ng-app="clesunClound">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>智慧农业综合服务平台-农场管理</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
+    <link href="bower_components/bootstrap-datetimepicker-master/css/bootstrap-datetimepicker.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="app.css">
+    <!--百度地图 add by lsw-->
+    <style>
+        /*.anchorBL{display:none}*/
+    </style>
+    <!--版本为最新的2.0版本，ak为个人开发key，正式上线建议改为企业ak，企业版具有更高的服务配额和https服务-->
+    <!--注意：https服务只有v2.0后才支持；javascriptAPI使用https服务需要添加一个特殊字段s=1-->
+    <script type="text/javascript"
+            src="http://api.map.baidu.com/api?v=2.0&ak=VrCxra23E5bwWahPx9coYKxypdGjlYfo"></script>
+    <!--end map-->
+
+    <script src="bower_components/jquery/dist/jquery.min.js"></script>
+    <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+    <!--<script src="bower_components/photoview/viewer.min.js"></script>-->
+    <script src="bower_components/echarts-master/dist/echarts.min.js"></script>
+    <script src="bower_components/echarts-master/dist/echarts.common.js"></script>
+    <link rel="stylesheet" href="bower_components/css3-accordion-menu/css/style.css" media="screen" type="text/css"/>
+    <!-- 百度编辑器 start --->
+    <script type="text/javascript" charset="utf-8" src="bower_components/ueditor/ueditor.config.js"></script>
+    <script type="text/javascript" charset="utf-8" src="bower_components/ueditor/ueditor.all.min.js"></script>
+    <!--建议手动加在语言，避免在ie下有时因为加载语言失败导致编辑器加载失败-->
+    <!--这里加载的语言文件会覆盖你在配置项目里添加的语言类型，比如你在配置项目里配置的是英文，这里加载的中文，那最后就是中文-->
+    <script type="text/javascript" charset="utf-8" src="bower_components/ueditor/lang/zh-cn/zh-cn.js"></script>
+
+    <!-- 百度编辑器 end --->
+    <script type="text/javascript" src="bower_components/bootstrap-datetimepicker-master/js/bootstrap-datetimepicker.js"
+            charset="UTF-8"></script>
+    <script type="text/javascript"
+            src="bower_components/bootstrap-datetimepicker-master/js/locales/bootstrap-datetimepicker.zh-CN.js"
+            charset="UTF-8"></script>
+</head>
+<body>
+<!--[if lt IE 7]>
+<p class="browsehappy">您使用的浏览器是 <strong>老古董</strong>了。 请点击 <a href="http://browsehappy.com/">下载</a>更新成最新的浏览器吧.</p>
+<![endif]-->
+
+<div ui-view></div>
+<script src="bower_components/photoview/viewer.min.js"></script>
+<script src="bower_components/angular/angular.js"></script>
+<script src="bower_components/angular/angular-animate.min.js"></script>
+<script src="bower_components/angular/angular-sanitize.min.js"></script>
+<script src="bower_components/angular-route/angular-route.min.js"></script>
+<script src="bower_components/angular-ui-router/release/angular-ui-router.min.js"></script>
+<script src="bower_components/ng-file-upload/ng-file-upload.min.js"></script>
+<script src="bower_components/ng-file-upload/ng-file-upload-shim.min.js"></script>
+<script src="app.js"></script>
+<script src="route.js"></script>
+
+<script src="components/util/static.js"></script>
+<script src="components/util/services.js"></script>
+<script src="components/util/userservices.js"></script>
+<script src="components/util/filter.js"></script>
+<script src="components/util/directives.js"></script>
+<script src="components/util/basectrls.js"></script>
+<script src="components/backFarm/ctrls.js"></script>
+<script src="components/backFarm/services.js"></script>
+</body>
+</html>

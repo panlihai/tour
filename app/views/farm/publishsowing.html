@@ -1,0 +1,153 @@
+<div class="panel panel-default">
+    <div class="panel-heading" style="background-color:#00a671; color: white;">
+        <div class="row">
+            <span class="col-xs-4" ui-sref="index.listsowing">返回列表</span>
+            <span class="col-xs-5 text-center">发布播种</span>
+            <span class="col-xs-3 text-right"  ui-sref="index.home">首页</span>
+        </div>
+    </div>
+</div>
+<div class="container-fluid" style="margin-bottom: 50px;">
+    <div class="clearfix" ng-hide="editpage">
+        <button type="button" class="btn btn-success pull-right" ng-click="publishEdit=true" style="margin-top: 10px; margin-bottom: 10px;">修改</button>
+    </div>
+    <div class="row" style="margin-top: 10px;">
+        <div class="col-md-12">
+            <form class="form-horizontal" role="form" name="form">
+                <form class="form-horizontal">
+                    <div class="form-group">
+                        <!-- Text input-->
+                        <label class="col-md-2  control-label">产品批次:</label>
+                        <div class="col-md-10">
+                            {{sowing.PRODUCTID}}
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <!-- Select Basic -->
+                        <label class="col-md-2  control-label">品种:</label>
+                        <div class="col-md-10">
+                            <label class="control-label" style="font-weight: normal;text-align: left;" ng-hide="publishEdit">
+                                {{sowing.PARENTTYPE}}
+                            </label>
+                            <select name="parentType" class="form-control" ng-show="publishEdit"
+                                    ng-options="p.CATALOGID as p.CATALOGNAME for p in parentTypeList"
+                                    ng-model="sowing.PARENTTYPE" required>
+                                <option value="">请选择品类</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <!-- Select Basic -->
+                        <label class="col-md-2  control-label"></label>
+                        <div class="col-md-10">
+                            <label class="control-label" style="font-weight: normal;text-align: left;" ng-hide="publishEdit">
+                                {{sowing.ITEMTYPE}}
+                            </label>
+                            <select name="itemType" class="form-control" ng-show="publishEdit"
+                                    ng-options="p.CATALOGID as p.CATALOGNAME for p in itemTypeList"
+                                    ng-model="sowing.ITEMTYPE" required>
+                                <option value="">请选择分类</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <!-- Select Basic -->
+                        <label class="col-md-2  control-label"></label>
+                        <div class="col-md-10">
+                            <label class="control-label" style="font-weight: normal;text-align: left;" ng-hide="publishEdit">
+                                {{sowing.ITEMCODE}}
+                            </label>
+                            <select name="itemCode" class="form-control" ng-show="publishEdit"
+                                    ng-options="p.CATALOGID as p.CATALOGNAME for p in itemCodeList"
+                                    ng-model="sowing.ITEMCODE" required>
+                                <option value="">请选择品种</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <!-- Text input-->
+                        <label class="col-md-2  control-label">名称:</label>
+                        <div class="col-md-10">
+                            <input type="text"  placeholder="请输入名称"  class="form-control"
+                                   ng-model="sowing.ITEMSPEC">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <!-- Select Basic -->
+                        <label class="col-md-2  control-label">种植地块:</label>
+
+                        <div class="col-md-10">
+                            <label class="control-label" style="font-weight: normal;text-align: left;" ng-hide="publishEdit">
+                                {{sowing.LOCID}}
+                            </label>
+                            <select name="locName" class="form-control" ng-show="publishEdit"
+                                    ng-options="p.LOCID as p.LOCNAME for p in locList"
+                                    ng-model="sowing.LOCID">
+                                <option value="">请选择</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <!-- Text input-->
+                        <label class="col-md-2  control-label">种植(养殖)面积:</label>
+                        <div class="col-md-10">
+                            <label class="control-label" style="font-weight: normal;text-align: left;" ng-hide="publishEdit">
+                                {{sowing.QUANTITY}}亩
+                            </label>
+                            <div class="input-group" ng-show="publishEdit">
+                                <input type="number" placeholder="请输入面积" class="form-control" ng-model="sowing.QUANTITY">
+                                <span class="input-group-addon">亩</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <!-- Text input-->
+                        <label class="col-md-2  control-label">下次种植(养殖)面积:</label>
+                        <div class="col-md-10">
+                            <label class="control-label" style="font-weight: normal;text-align: left;" ng-hide="publishEdit">
+                                {{sowing.FORECASEQUANTITY}}亩
+                            </label>
+                            <div class="input-group" ng-show="publishEdit">
+                                <input type="number"  placeholder="请输入下一次使用面积"  class="form-control"
+                                       ng-model="sowing.FORECASEQUANTITY"
+                                       aria-describedby="basic-addon1">
+                                <span class="input-group-addon" id="basic-addon1">亩</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <!-- Text input-->
+                        <label class="col-md-2  control-label">预计产量:</label>
+                        <div class="col-md-10">
+                            <label class="control-label" style="font-weight: normal;text-align: left;" ng-hide="publishEdit">
+                                {{sowing.FORECASEWEIGHT}}吨
+                            </label>
+                            <div class="input-group" ng-show="publishEdit">
+                                <input type="number" placeholder="请输入预计产量" class="form-control"
+                                       ng-model="sowing.FORECASEWEIGHT">
+                                <span class="input-group-addon">吨</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <!-- Text input-->
+                        <label class="col-md-2  control-label">备注:</label>
+                        <div class="col-md-10">
+                            <label class="control-label" style="font-weight: normal;text-align: left;" ng-hide="publishEdit">
+                                {{sowing.MEMO}}
+                            </label>
+                            <textarea placeholder="请输入备注信息" class="form-control" ng-show="publishEdit"
+                                      ng-model="sowing.MEMO">
+                            </textarea>
+                        </div>
+                    </div>
+                    <div class="form-group" ng-show="publishEdit">
+                        <div class="col-md-12">
+                            <button ng-click="publishsowing();" class="btn btn-warning btn-block">立即发布</button>
+                        </div>
+                    </div>
+                </form>
+            </form>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,93 @@
+<div class="panel panel-default">
+    <div class="panel-heading" style="background-color:#00a671; color: white">
+        <div class="row">
+            <span class="col-xs-3" ng-click="$state.go('index.profile')">返回</span><span
+                class="col-xs-6 text-center">我的地块</span><span
+                class="col-xs-3 text-right" ng-click="$state.go('index.home')">首页</span>
+        </div>
+    </div>
+</div>
+<div class="panel panel-default">
+    <div class="panel-heading clearfix" ng-hide="editpage">
+        <span class="pull-left">地块</span>
+        <button type="button" class="btn btn-success pull-right" ng-click="editType=true">修改</button>
+    </div>
+    <div class="panel-body">
+        <form class="form-horizontal">
+            <div class="form-group">
+                <label class="col-md-2 control-label">编号</label>
+
+                <div class="col-md-10">
+                    <label class="control-label" style="font-weight: normal;text-align: left;" ng-hide="editType">
+                        {{loc.LOCID}}
+                    </label>
+                    <input class="form-control" type="text" placeholder="请填写编号" ng-model="loc.LOCID" ng-show="editType">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-2 control-label">名称</label>
+
+                <div class="col-md-10">
+                    <label class="control-label" style="font-weight: normal;text-align: left;" ng-hide="editType">
+                        {{loc.LOCNAME}}
+                    </label>
+                    <input class="form-control" type="text" placeholder="请填写名称" ng-model="loc.LOCNAME"
+                           ng-show="editType">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-2 control-label">面积</label>
+
+                <div class="col-md-10">
+                    <label class="control-label" style="font-weight: normal;text-align: left;" ng-hide="editType">
+                        {{loc.LOCSPEC}}
+                    </label>
+                    <input class="form-control" type="text" placeholder="请填写面积" ng-model="loc.LOCSPEC"
+                           ng-show="editType">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-2 control-label">位置</label>
+
+                <div class="col-md-10">
+                    <label class="control-label" style="font-weight: normal;text-align: left;" ng-hide="editType">
+                        {{loc.LOCMODEL}}
+                    </label>
+                    <input class="form-control" type="text" placeholder="请填写方位" ng-model="loc.LOCMODEL"
+                           ng-show="editType">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-md-2 control-label">备注</label>
+
+                <div class="col-md-10">
+                    <label class="control-label" style="font-weight: normal;text-align: left;" ng-hide="editType">
+                        {{loc.REMARK}}
+                    </label>
+                    <textarea class="form-control" ng-model="loc.REMARK" ng-show="editType"></textarea>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-2  control-label">上传轮播图片</label>
+
+                <div class="col-sm-10"
+                     ngf-select="uploadFile($files)"
+                     name="pic0" ngf-pattern="'image/*'"
+                     ngf-accept="'image/*'" ngf-max-size="10MB">
+                    <div class="farm_picture" style="opacity: 0.8;background-color: #333;" ng-show="editType">
+                        <img ng-src="{{loc.PICPATH}}" width="100" height="100"/>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-12">
+                    <button class="btn btn-success btn-block" ng-disabled="userForm.$invalid"
+                            ng-click="save();">
+                        <span class="glyphicon glyphicon-ok"></span> 保存
+                    </button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

@@ -1,0 +1,66 @@
+<div class="panel panel-default">
+    <div class="panel-heading" style="background-color:#00a671; color: white;">
+        <div class="row">
+            <span class="col-xs-3" ui-sref="index.home">首页</span>
+            <span class="col-xs-5 text-center">我的产品</span>
+            <span class="col-xs-4 text-right" ui-sref="index.listsowing">发布产品</span>
+        </div>
+    </div>
+</div>
+<div class="container-fluid" style="margin-bottom: 50px;background-color:#f7f7f7">
+    <div class="row" ng-repeat="product in productList">
+        <div class="thumbnail" style="background-color:#ffffff">
+            <div class="caption">
+                <h3 class="clearfix" style="margin-top: 0px;"><span>{{product.ITEMDESC}}</span>
+                <span class="pull-right" style="font-size: small">
+                    <span style="color:#999999">{{product.BUILDTIME|timeSec2Mis|date:"yyyy-MM-dd"}}</span>
+                </span>
+                </h3>
+                <div class="clearfix">
+                    <span class="pull-left">
+                        <span style="color:#999999">批次号:</span>
+                        <span style="color:#666666">{{product.PRODUCTID}}</span>
+                    </span>
+                </div>
+                <div class="clearfix">
+                    <span class="pull-left">
+                        <span style="color:#999999">预计产量:</span>
+                         <span style="color:#666666">{{product.FORECASEWEIGHT}}吨</span>
+                    </span>
+                    <span class="pull-right">
+                        <span style="color:#999999">面积:</span>
+                         <span style="color:#666666">{{product.QUANTITY}}亩</span>
+                    </span>
+                </div>
+                <div class="clearfix">
+                    <span class="pull-left">
+                        <span style="color:#999999">地块:</span>
+                        <span style="color:#666666">{{product.LOCNAME}}</span>
+                    </span>
+                </div>
+                <div class="clearfix">
+                    <span class="pull-left">
+                        <span style="color:#999999">备注:</span>
+                        <span style="color:#666666">{{product.MEMO}}</span>
+                    </span>
+                </div>
+                <div class="clearfix" style="margin-top: 10px">
+                    <span class="pull-left">
+                    <button class="btn btn-default btn-sm"
+                            ui-sref="index.productdetail({productid:product.PRODUCTID})">查看详情
+                    </button></span>
+                    <span class="pull-right">
+                        <button class="btn btn-warning btn-sm" ng-hide="product.ENABLE=='Y'&&product.STATUS=='Y'"
+                                ng-click="publishproduct(product.PRODUCTID)">
+                            <!--ui-sref="index.publishproduct({productid:product.PRODUCTID})"-->
+                            推荐产品
+                        </button>
+                        <span ng-show="product.ENABLE=='Y'&&product.STATUS=='Y'"><span
+                                style="color:#a9302a;font-size: 14px">已推荐</span></span>
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>

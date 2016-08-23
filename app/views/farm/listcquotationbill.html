@@ -1,0 +1,65 @@
+<div class="panel panel-default">
+    <div class="panel-heading" style="background-color:#00a671; color: white;">
+        <div class="row">
+            <span class="col-xs-3" ui-sref="index.home">首页</span>
+            <span class="col-xs-5 text-center">我的活动</span>
+            <span class="col-xs-4 text-right" ui-sref="index.publishcquotationbill">发布活动</span>
+        </div>
+    </div>
+</div>
+<div class="container-fluid" style="margin-bottom: 50px;background-color:#f7f7f7">
+    <div class="row" ng-repeat="cbill in cbillList">
+        <div class="thumbnail" style="background-color:#ffffff">
+            <div class="caption">
+                <h3 style="margin-top: 0px;">{{cbill.TITLE}}
+                </h3>
+
+                <div class="clearfix">
+                    <span class="pull-left">
+                        <span style="color:#999999">有效期:</span>
+                         <span style="color:#666666">{{cbill.FROMDATESTART|timeSec2Mis|date:"yyyy-MM-dd"}}</span>
+                    </span>
+                    <span class="pull-right">
+                        <span style="color:#999999">截止:</span>
+                         <span style="color:#666666;">{{cbill.FROMDATESTOP|timeSec2Mis|date:"yyyy-MM-dd"}}</span>
+                    </span>
+                </div>
+                <div class="clearfix">
+                    <span class="pull-left">
+                        <span style="color:#999999">品种:</span>
+                        <span style="color:#666666">{{cbill.GOODSNAME}}</span>
+                    </span>
+                </div>
+                <div class="clearfix">
+                    <span class="pull-left">
+                        <span style="color:#999999">活动价格:</span>
+                         <span style="color:#666666">{{cbill.PRICE}}元</span>
+                    </span>
+                    <span class="pull-right">
+                        <span style="color:#999999">原价:</span>
+                         <del style="color:#666666;">{{cbill.SOURCEPRICE}}元</del>
+                    </span>
+                </div>
+                <div class="row" style="margin-top: 10px;margin-left: 0px;margin-right: 0px;">
+                        <span class="col-xs-4">
+                            <button class="btn btn-default btn-sm"
+                                    ui-sref="index.cbilldetail({qbillid:cbill.QBILLID})">
+                                查看详情
+                            </button>
+                        </span>
+                        <span class="col-xs-4 text-center"
+                              style="vertical-align: middle;font-size: small;color:#a9302a">
+                            {{cbill.STATUS|toStrFrom:'{"N":"草稿","Y":"已发布"}'}}
+                        </span>
+                        <span class="col-xs-4 text-right">
+                            <button
+                                    class="btn btn-default btn-sm"
+                                    ui-sref="index.modifycbill({qbillid:cbill.QBILLID})">
+                                修改活动
+                            </button>
+                        </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

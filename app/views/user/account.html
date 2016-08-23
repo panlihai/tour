@@ -1,0 +1,263 @@
+﻿<div class="panel panel-default" xmlns="http://www.w3.org/1999/html">
+    <div class="panel-heading" style="background-color:#00a671; color: white;">
+        <div class="row">
+            <span class="col-xs-3" ng-click="$state.go('index.profile')">返回</span>
+            <span class="col-xs-6 text-center">农场资料</span>
+            <span class="col-xs-3 text-right" ng-click="$state.go('index.home')">首页</span>
+        </div>
+    </div>
+    <div class="panel-body">
+        <form class="row form-horizontal">
+            <div style="margin-bottom: 10px;" ngf-select="uploadFile($files)"
+                 name="pic" ngf-pattern="'image/*'"
+                 ngf-accept="'image/*'" ngf-max-size="10MB">
+                <img class="img-circle" src="./img/newsAnnunciate/banner.png" ng-src="{{account.HEADPICPATH}}"
+                     style="width: 100px; height:100px;display: block; margin: 5px auto;"/>
+
+                <div class="text-center">{{account.ACCOUNTNAME}}</div>
+                <div class="text-center">{{account.COMPANYNET}}</div>
+            </div>
+        </form>
+    </div>
+</div>
+<div class="panel panel-default">
+    <div class="panel-heading clearfix">
+        <span class="pull-left">农场信息</span>
+
+        <div class="clearfix">
+            <button type="button" class="btn btn-success pull-right" ng-click="editType1=true">修改
+            </button>
+        </div>
+    </div>
+    <div class="panel-body">
+        <form class="form-horizontal">
+            <div class="form-group">
+                <label class="col-md-2 control-label">经营种类</label>
+
+                <div class="col-md-10">
+                    <label class="control-label" style="font-weight: normal;text-align: left;" ng-hide="editType1">
+                        {{selectProsecution}}
+                    </label>
+                    <label class="checkbox-inline" ng-repeat="prosecution in PROSECUTIONS" ng-show="editType1">
+                        <input type="checkbox" value="option1"
+                               name="prosecution" ng-model="prosecution.CHECK"
+                               ng-checked="prosecution.CHECK"/>
+                        {{prosecution.CATALOGNAME}}
+                    </label>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-2 control-label">农场总面积</label>
+
+                <div class="col-md-10">
+                    <label class="control-label" style="font-weight: normal;text-align: left;" ng-hide="editType1">
+                        {{account.TOTALAREA}}亩
+                    </label>
+                    <input class="form-control" type="number" ng-model="account.TOTALAREA" placeholder="请填写亩数"
+                           ng-show="editType1"/>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-md-2 control-label">地区</label>
+
+                <div class="col-md-10">
+                    <label class="control-label" style="font-weight: normal;text-align: left;" ng-hide="editType1">
+                        {{account.PROVINCE}}{{account.CITY}}{{account.COUNTY}}{{account.TOWN}}{{account.VILAGE}}
+                    </label>
+                    <label class="control-label" ng-show="editType1">
+                        {{account.PROVINCE}}{{account.CITY}}{{account.COUNTY}}
+                        <select name="town"
+                                ng-options="p.RGNAME as p.RGNAME for p in towns"
+                                ng-model="account.TOWN" required>
+                            <option value="" class="step_input">请选择</option>
+                        </select>
+                    </label>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-md-2 control-label">详细地址</label>
+
+                <div class="col-md-10">
+                    <label class="control-label" style="font-weight: normal;text-align: left;" ng-hide="editType1">
+                        {{account.ADDRESS}}
+                    </label>
+                    <input class="form-control" ng-model="account.ADDRESS" type="text" placeholder="请输入详细地址"
+                           ng-show="editType1">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-2 control-label">农场简介</label>
+
+                <div class="col-md-10">
+                    <label class="control-label" style="font-weight: normal;text-align: left;" ng-hide="editType1">
+                        {{account.SUMMARY}}
+                    </label>
+                    <textarea class="form-control" style="min-height: 100px;" ng-show="editType1"
+                              ng-model="account.SUMMARY">
+
+                    </textarea>
+                </div>
+            </div>
+        </form>
+        <button type="button" class="btn btn-success pull-right" ng-show="editType1"
+                ng-click="editType1=false;update();">确定
+        </button>
+    </div>
+
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading clearfix">
+        <span class="pull-left">联系信息</span>
+        <button type="button" class="btn btn-success pull-right" ng-click="editType2=true">修改</button>
+    </div>
+    <div class="panel-body">
+        <form class="form-horizontal">
+
+            <div class="form-group">
+                <label class="col-md-2 control-label">联系人</label>
+
+                <div class="col-md-10">
+                    <label class="control-label" style="font-weight: normal;text-align: left;" ng-hide="editType2">
+                        {{account.CONTACT}}
+                    </label>
+                    <input class="form-control" type="text" placeholder="请输入联系人姓名" ng-model="account.CONTACT"
+                           ng-show="editType2">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-2 control-label">手机号</label>
+
+                <div class="col-md-10">
+                    <label class="control-label" style="font-weight: normal;text-align: left;">
+                        {{account.PHONENUM}}
+                    </label>
+
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-md-2 control-label">传真</label>
+
+                <div class="col-md-10">
+                    <label class="control-label" style="font-weight: normal;text-align: left;" ng-hide="editType2">
+                        {{account.CONTECTERFAX}}
+                    </label>
+                    <input class="form-control" type="tel" ng-model="account.CONTECTERFAX" placeholder="请输入传真号码"
+                           ng-show="editType2">
+                </div>
+            </div>
+        </form>
+
+        <div class="clearfix">
+            <button type="button" class="btn btn-success pull-right" ng-show="editType2"
+                    ng-click="editType2=false;update();">确定
+            </button>
+        </div>
+    </div>
+</div>
+<div class="panel panel-default">
+    <div class="panel-heading clearfix">
+        <span class="pull-left">站点信息</span>
+    </div>
+    <div class="panel-body">
+        <form class="form-horizontal">
+            <label class="col-sm-2  control-label">首页轮播图片</label>
+
+            <div class="col-sm-10" ng-show="bannerList.length==0">
+                <div class="col-sm-3"
+                     ngf-select="uploadFile0($files)"
+                     name="pic0" ngf-pattern="'image/*'"
+                     ngf-accept="'image/*'" ngf-max-size="10MB"
+                        >
+                    <div class="farm_picture" style="opacity: 0.8;background-color: #333;">
+                        <img ng-src="{{PICPATH0}}" width="100" height="100"/>
+                    </div>
+                </div>
+
+                <div class="col-sm-3"
+                     ngf-select="uploadFile1($files)"
+                     name="pic1" ngf-pattern="'image/*'"
+                     ngf-accept="'image/*'" ngf-max-size="10MB"
+                        >
+                    <div class="farm_picture" style="opacity: 0.8;background-color: #333;">
+                        <img ng-src="{{PICPATH1}}" width="100" height="100"/>
+                    </div>
+                </div>
+
+                <div class="col-sm-3"
+                     ngf-select="uploadFile2($files)"
+                     name="pic2" ngf-pattern="'image/*'"
+                     ngf-accept="'image/*'" ngf-max-size="10MB">
+                    <div class="farm_picture" style="opacity: 0.8;background-color: #333;">
+                        <img ng-src="{{PICPATH2}}" width="100" height="100"/>
+                    </div>
+                </div>
+                <div class="col-sm-3"
+                     ngf-select="uploadFile3($files)"
+                     name="pic2" ngf-pattern="'image/*'"
+                     ngf-accept="'image/*'" ngf-max-size="10MB">
+                    <div class="farm_picture" style="opacity: 0.8;background-color: #333;">
+                        <img ng-src="{{PICPATH3}}" width="100" height="100"/>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="col-sm-10" ng-show="bannerList.length!=0">
+                <ul>
+                    <li class="col-md-3" ng-repeat="banner in bannerList">
+                        <div style="width: 85%;margin-left: auto; margin-right: auto;">
+                            <img ng-src="{{banner.IMGPATH}}" width="100" height="100"/>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </form>
+    </div>
+</div>
+<div class="panel panel-default">
+    <div class="panel-heading clearfix">
+        <span class="pull-left">认证信息</span>
+    </div>
+    <div class="panel-body">
+        <form class="form-horizontal">
+            <div class="form-group">
+                <label class="col-md-2 control-label">法人</label>
+
+                <div class="col-md-10">
+                    <label class="control-label" style="font-weight: normal;text-align: left;">
+                        {{account.CORPORATION}}
+                    </label>
+                </div>
+            </div>
+            <div class="form-group" style="margin-top: 20px; margin-bottom: 20px;">
+                <ul>
+                    <li class="col-md-4">
+                        <div style="width: 85%;margin-left: auto; margin-right: auto;">
+                            <img ng-src="{{licensePic}}" data-original="{{licensePic}}" width="100%"
+                                 height="130" title="点击图片可放大" style="cursor: pointer;"/>
+                            <h4 class="text-center">营业执照</h4>
+                        </div>
+                    </li>
+                    <li class="col-md-4">
+                        <div style="width: 85%;margin-left: auto; margin-right: auto;">
+                            <img ng-src="{{cardPic}}" data-original="{{cardPic}}" width="100%"
+                                 height="130" title="点击图片可放大" style="cursor: pointer;"/>
+                            <h4 class="text-center">法人身份证</h4>
+                        </div>
+                    </li>
+                    <li class="col-md-4">
+                        <div style="width: 85%;margin-left: auto; margin-right: auto;">
+                            <img ng-src="{{cardBackPic}}" data-original="{{cardBackPic}}" width="100%"
+                                 height="130" title="点击图片可放大" style="cursor: pointer;"/>
+                            <h4 class="text-center">法人身份证</h4>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </form>
+    </div>
+</div>

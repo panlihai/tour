@@ -1,0 +1,150 @@
+<div class="panel panel-default">
+    <div class="panel-heading" style="background-color:#00a671; color: white;">
+        <div class="row">
+            <span class="col-xs-3" ui-sref="index.listproduct">返回列表</span>
+            <span class="col-xs-6 text-center">发布产品</span>
+            <span class="col-xs-3 text-right"  ui-sref="index.home">首页</span>
+        </div>
+    </div>
+</div>
+<div class="container-fluid" style="margin-bottom: 50px;">
+    <div class="row" style="margin-top: 10px;">
+        <div class="thumbnail" style="background-color:#ffffff">
+            <div class="caption">
+                <h3 class="clearfix" style="margin-top: 0px;"><span>{{product.ITEMDESC}}</span>
+                <span class="pull-right" style="font-size: small">
+                    <span style="color:#999999">{{product.BUILDTIME|timeSec2Mis|date:"yyyy-MM-dd"}}</span>
+                </span>
+                </h3>
+
+                <div class="clearfix">
+                    <span class="pull-left">
+                        <span style="color:#999999">批次号:</span>
+                        <REALspan style="color:#666666">{{product.PRODUCTID}}</span>
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row" style="margin-top: 10px;" ng-show="hasMessage">
+
+        <form class="form-horizontal">
+            <div class="form-group">
+                <!-- Text input-->
+                <label class="col-sm-12  control-label text-error">{{message}}</label>
+            </div>
+        </form>
+    </div>
+    <div class="row" style="margin-top: 10px;">
+        <div class="col-sm-12">
+            <form class="form-horizontal" role="form" name="form">
+
+                <form class="form-horizontal">
+                    <div class="form-group">
+                        <!-- Text input-->
+                        <label class="col-sm-2  control-label">单价:</label>
+
+                        <div class="col-sm-10">
+                            <div class="input-group">
+                                <input type="number" placeholder="请输入单价" class="form-control"
+                                       ng-model="product.PRICE">
+                                <span class="input-group-addon">元/斤</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <!-- Text input-->
+                        <label class="col-sm-2  control-label">备注:</label>
+
+                        <div class="col-sm-10">
+                            <textarea placeholder="请输入备注信息" class="form-control"
+                                      ng-model="product.REMARK">
+                            </textarea>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2  control-label">上传轮播图片</label>
+
+                        <div class="col-sm-10">
+
+                            <div class="col-sm-3"
+                                 ngf-select="uploadFile0($files)"
+                                 name="pic0" ngf-pattern="'image/*'"
+                                 ngf-accept="'image/*'" ngf-max-size="10MB" ngf-min-height="100"
+                                    >
+                                <div class="farm_picture" style="opacity: 0.8;background-color: #333">
+                                    <img ng-src="{{product.PICPATH0}}" width="100" height="100"/>
+                                </div>
+                            </div>
+                            <div class="col-sm-3"
+                                 ngf-select="uploadFile1($files)"
+                                 name="pic1" ngf-pattern="'image/*'"
+                                 ngf-accept="'image/*'" ngf-max-size="10MB" ngf-min-height="100"
+                                    >
+                                <div class="farm_picture" style="opacity: 0.8;background-color: #333">
+                                    <img ng-src="{{product.PICPATH1}}" width="100" height="100"/>
+                                </div>
+                            </div>
+
+                            <div class="col-sm-3"
+                                 ngf-select="uploadFile2($files)"
+                                 name="pic2" ngf-pattern="'image/*'"
+                                 ngf-accept="'image/*'" ngf-max-size="10MB" ngf-min-height="100"
+                                    >
+                                <div class="farm_picture" style="opacity: 0.8;background-color: #333">
+                                    <img ng-src="{{product.PICPATH2}}" width="100" height="100"/>
+                                </div>
+                            </div>
+
+                            <div class="col-sm-3"
+                                 ngf-select="uploadFile3($files)"
+                                 name="pic3" ngf-pattern="'image/*'"
+                                 ngf-accept="'image/*'" ngf-max-size="10MB" ngf-min-height="100"
+                                    >
+
+
+                                <div class="farm_picture" style="opacity: 0.8;background-color: #333">
+                                    <img ng-src="{{product.PICPATH3}}" width="100" height="100"/>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group" ng-repeat="file in fileList">
+                        <label class="col-sm-2 control-label">图文详情</label>
+
+                        <div class="col-sm-10">
+                            <div class="">
+                                <div class="col-sm-10">
+                                    <textarea class="form-control" ng-model="file.REMARK" cols="5"
+                                              placeholder="请输入图文描述"></textarea>
+                                </div>
+                                <div class="col-sm-2"
+                                     ngf-select="uploadFileAll($files,file.FILEID)"
+                                     name="pic0" ngf-pattern="'image/*'"
+                                     ngf-accept="'image/*'" ngf-max-size="10MB" ngf-min-height="100"
+                                        >
+                                    <div class="farm_picture" style="opacity: 0.8;background-color: #333">
+                                        <img ng-src="{{file.PICPATH}}"  width="100" height="100"/>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">
+                            <button ng-click="addFile()" class="btn btn-primary">增加图文详情</button>
+                        </label>
+
+                        <div class="col-sm-10"></div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-12">
+                            <button ng-click="publishproduct()" class="btn btn-warning btn-block">立即发布</button>
+                        </div>
+                    </div>
+                </form>
+            </form>
+        </div>
+    </div>
+</div>

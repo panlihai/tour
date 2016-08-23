@@ -1,0 +1,126 @@
+<div class="container-fluid" style="margin-bottom: 50px;">
+    <div class="row" style="background-color:#00a671; color: white">
+        <div class="clearfix">
+            <div style="width: 33%;" class="pull-left">
+                <button class="btn btn-link btn-sm"
+                        style="color: #ffffff;padding:0px 15px;font-weight: 200;font-size: 16px"
+                        ui-sref="index.listcquotationbill">返 回
+                </button>
+            </div>
+            <div style="width: 33%; text-align: center;" class="pull-left">
+                <strong>活动详情</strong>
+            </div>
+            <div style="width: 33%;" class="clearfix pull-left">
+                <button class="btn btn-link btn-sm pull-right" style="color: #fff; margin-right: 10px"
+                        ui-sref="index.publishcquotationbill">发布活动
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div id="mycarousel" class="row carousel slide"
+         data-ride="carousel" ng-show="bannerList.length!=0">
+        <!-- Indicators -->
+        <ol class="carousel-indicators">
+            <li data-target="#mycarousel" ng-repeat="banner in bannerList" data-slide-to="{{$index}}"
+                ng-class="{'active':$index==0}"></li>
+        </ol>
+
+        <!-- Wrapper for slides -->
+        <div class="carousel-inner" role="listbox">
+            <div ng-repeat="banner in bannerList" ng-class="{'item active':$index==0,'item':$index!=0}">
+                <img class="img img-responsive" ng-src="{{banner.IMGPATH}}" title="{{banner.TITLE}}" width="100%"
+                     height="50%>
+
+                <div class=" carousel-caption">
+            </div>
+        </div>
+    </div>
+    <script>
+        $('.carousel').carousel();
+    </script>
+    <div class="row" style="margin-top: 10px;">
+        <div class="thumbnail" style="background-color:#ffffff">
+            <div class="caption">
+                <h3 class="clearfix" style="margin-top: 0px;">
+                    <span class="pull-left">
+                        {{cbill.TITLE}}
+                        </span>
+                    <span class="pull-right">
+                    {{cbill.BUSSTYPE}}
+                        </span>
+                </h3>
+
+                <div class="clearfix">
+                    <span class="pull-left">
+                        <span style="color:#999999">活动日期:</span>
+                        <span style="color:#666666">{{cbill.FROMDATESTART|timeSec2Mis|date:"yyyy-MM-dd"}}</span>
+                    </span>
+                    <span class="pull-right" style="font-size: small">
+                        <span style="color:#999999">{{cbill.FROMDATESTOP|timeSec2Mis|date:"yyyy-MM-dd"}}</span>
+                    </span>
+                </div>
+                <div class="clearfix">
+                    <span class="pull-left">
+                        <span style="color:#999999">活动价格:</span>
+                         <span style="color:#666666">{{cbill.PRICE}}元</span>
+                    </span>
+                    <span class="pull-right">
+                        <span style="color:#999999">原价:</span>
+                         <span style="color:#666666">{{cbill.SOURCEPRICE}}亩</span>
+                    </span>
+                </div>
+                <div class="clearfix">
+                    <span class="pull-left">
+                        <span style="color:#999999">可带走数量:</span>
+                        <span style="color:#666666">{{cbill.GETNUM}}</span>
+                    </span>
+
+                    <span class="pull-right">
+                        <span style="color:#999999">产品名称:</span>
+                         <span style="color:#666666">{{cbill.GOODSNAME}}</span>
+                    </span>
+                </div>
+                <div class="clearfix" ng-show="cbill.LOCNAME!=''">
+                    <span class="pull-left">
+                        <span style="color:#999999">地块:</span>
+                        <span style="color:#666666">{{cbill.LOCNAME}}</span>
+                    </span>
+                </div>
+                <div class="clearfix" ng-show="cbill.LOCNAME!=''">
+                    <span class="pull-left">
+                        <span style="color:#999999">租赁开始日期:</span>
+                        <span style="color:#666666">{{cbill.LEASESTARTTIME|timeSec2Mis|date:"yyyy-MM-dd"}}</span>
+                    </span>
+                    <span class="pull-right" style="font-size: small">
+                        <span style="color:#999999">{{cbill.LEASEENDTIME|timeSec2Mis|date:"yyyy-MM-dd"}}</span>
+                    </span>
+                </div>
+
+                <div class="clearfix">
+                    <span class="pull-left">
+                        <span style="color:#999999">摘要:</span>
+                        <span style="color:#666666">{{cbill.CONTENT}}</span>
+                    </span>
+                </div>
+                <div class="clearfix">
+                    <span class="pull-left">
+                        <span style="color:#999999">摘要:</span>
+                        <span style="color:#666666">{{cbill.CONTENT}}</span>
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row bg-success">
+        <span class="text-success text-center">活动图文详情</span>
+    </div>
+    <div class="row">
+        <div class="col-sm-12" ng-repeat="article in articleList">
+            <img ng-src="{{article.PICPATH}}" title="{{article.TITLE}}" class="img img-responsive"
+                 width="100%">
+
+            <p class="text-center text-center">{{article.CONTENT|deCode64}}</p>
+        </div>
+    </div>
+</div>
